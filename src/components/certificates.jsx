@@ -161,9 +161,6 @@ export default function Certificates() {
               );
             })}
           </div>
-          <div className="certificates-placeholder-note">
-            💡 Update the certificates array in Certificates.jsx with your actual certificates
-          </div>
         </div>
       </section>
     </>
