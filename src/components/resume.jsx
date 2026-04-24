@@ -33,16 +33,16 @@ const education = [
 ];
 
 const skills = [
-  { icon: "💻", label: "Programming" },
-  { icon: "✍️", label: "Proofreading" },
-  { icon: "🧩", label: "Problem Solving" },
-  { icon: "🖼️", label: "Basic Photo Editing" },
+  { label: "Programming" },
+  { label: "Proofreading" },
+  { label: "Problem Solving" },
+  { label: "Basic Photo Editing" },
 ];
 
 const contact = [
-  { icon: "📞", label: "0927-311-6063" },
-  { icon: "✉️", label: "s2023102316@firstasia.edu.ph" },
-  { icon: "📍", label: "Brgy. Gonzales, Tanauan City, Batangas" },
+  { label: "Phone", value: "0927-311-6063" },
+  { label: "Email", value: "s2023102316@firstasia.edu.ph" },
+  { label: "Address", value: "Brgy. Gonzales, Tanauan City, Batangas" },
 ];
 
 const personal = [
@@ -59,39 +59,27 @@ export default function Resume() {
       <style>{`
         .resume {
           padding: 7rem 3rem;
-          background: var(--navy-mid);
+          background: var(--bg-alt);
           position: relative;
-          overflow: hidden;
         }
-
-        .resume::before {
-          content: '';
-          position: absolute;
-          right: 0; top: 10%; bottom: 10%;
-          width: 1px;
-          background: linear-gradient(to bottom, transparent, var(--blue-light), transparent);
-          opacity: 0.2;
-        }
-
         .resume-inner {
-          max-width: 1020px;
+          max-width: 1060px;
           margin: 0 auto;
         }
 
         /* Download bar */
         .resume-download-bar {
-          background: var(--navy-card);
-          border: 1px solid var(--border-dim);
-          border-radius: 12px;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
           overflow: hidden;
           margin-bottom: 2.5rem;
         }
-        .resume-download-bar-top {
+        .resume-bar-accent {
           height: 2px;
-          background: linear-gradient(90deg, var(--blue), var(--blue-light), transparent);
-          opacity: 0.6;
+          background: linear-gradient(90deg, var(--accent), rgba(196, 162, 101, 0.2), transparent);
         }
-        .resume-download-bar-body {
+        .resume-bar-body {
           padding: 1.5rem 2rem;
           display: flex;
           align-items: center;
@@ -107,26 +95,28 @@ export default function Resume() {
         .resume-file-icon {
           width: 48px; height: 48px;
           border-radius: 8px;
-          background: var(--blue-muted);
-          border: 1px solid var(--border);
+          background: var(--accent-soft);
+          border: 1px solid var(--accent-border);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.3rem;
           flex-shrink: 0;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.7rem;
+          font-weight: 500;
+          color: var(--accent);
         }
         .resume-file-name {
-          font-family: 'DM Sans', sans-serif;
           font-size: 0.92rem;
           font-weight: 500;
-          color: var(--white);
+          color: var(--text);
           margin-bottom: 0.2rem;
         }
         .resume-file-sub {
-          font-family: 'DM Mono', monospace;
+          font-family: 'JetBrains Mono', monospace;
           font-size: 0.68rem;
           font-weight: 300;
-          color: var(--gray);
+          color: var(--text-muted);
           letter-spacing: 0.03em;
         }
         .resume-btns {
@@ -140,37 +130,34 @@ export default function Resume() {
           display: grid;
           grid-template-columns: 260px 1fr;
           gap: 0;
-          background: var(--navy-card);
-          border: 1px solid var(--border-dim);
-          border-radius: 12px;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
           overflow: hidden;
         }
 
-        /* Left sidebar */
-        .resume-sidebar {
-          background: #0a1628;
-          border-right: 1px solid var(--border-dim);
+        /* Sidebar */
+        .res-sidebar {
+          background: #0d0d0d;
+          border-right: 1px solid var(--border);
           padding: 2rem 1.5rem;
           display: flex;
           flex-direction: column;
           gap: 2rem;
         }
-
-        .sidebar-photo {
+        .res-sidebar-photo {
           width: 100%;
           aspect-ratio: 3/4;
           border-radius: 8px;
           border: 1px solid var(--border);
           object-fit: cover;
-          background: var(--navy-mid);
+          background: var(--bg-alt);
           display: block;
         }
-
-        .sidebar-section-title {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.75rem;
+        .res-sidebar-title {
+          font-size: 0.72rem;
           font-weight: 500;
-          color: var(--white);
+          color: var(--text);
           text-transform: uppercase;
           letter-spacing: 0.1em;
           margin-bottom: 0.85rem;
@@ -178,217 +165,220 @@ export default function Resume() {
           align-items: center;
           gap: 0.5rem;
         }
-        .sidebar-section-title::after {
+        .res-sidebar-title::after {
           content: '';
           flex: 1;
           height: 1px;
-          background: var(--border-dim);
+          background: var(--border);
         }
 
-        .contact-list {
+        .res-contact-list {
           display: flex;
           flex-direction: column;
           gap: 0.65rem;
         }
-        .contact-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.6rem;
-          font-size: 0.76rem;
-          font-weight: 300;
-          color: var(--gray);
-          line-height: 1.5;
-        }
-        .contact-item-icon {
-          font-size: 0.85rem;
-          margin-top: 1px;
-          flex-shrink: 0;
-        }
-
-        .personal-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-        .personal-item {
+        .res-contact-item {
           display: flex;
           flex-direction: column;
           gap: 0.1rem;
         }
-        .personal-label {
-          font-size: 0.62rem;
+        .res-contact-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.58rem;
           font-weight: 400;
-          color: var(--blue-light);
+          color: var(--accent);
           text-transform: uppercase;
           letter-spacing: 0.08em;
-          font-family: 'DM Mono', monospace;
         }
-        .personal-value {
+        .res-contact-value {
           font-size: 0.76rem;
           font-weight: 300;
-          color: var(--white-dim);
+          color: var(--text-secondary);
+          line-height: 1.4;
         }
 
-        .skills-list {
+        .res-personal-list {
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
         }
-        .skill-item {
+        .res-personal-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.1rem;
+        }
+        .res-personal-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.58rem;
+          font-weight: 400;
+          color: var(--accent);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+        }
+        .res-personal-value {
+          font-size: 0.76rem;
+          font-weight: 300;
+          color: var(--text-secondary);
+        }
+
+        .res-skills-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+        }
+        .res-skill-item {
           display: flex;
           align-items: center;
           gap: 0.6rem;
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           font-weight: 300;
-          color: var(--white-dim);
+          color: var(--text-secondary);
           padding: 0.4rem 0.65rem;
-          border-radius: 6px;
-          background: var(--blue-muted);
-          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          background: var(--accent-soft);
+          border: 1px solid var(--accent-border);
+        }
+        .res-skill-dot {
+          width: 4px; height: 4px;
+          border-radius: 50%;
+          background: var(--accent);
+          opacity: 0.7;
         }
 
-        /* Right main content */
-        .resume-main {
+        /* Main content */
+        .res-main {
           padding: 2rem 2.25rem;
         }
-
-        .resume-name {
+        .res-name {
           font-family: 'Playfair Display', serif;
           font-size: 2rem;
           font-weight: 700;
-          color: var(--white);
+          color: var(--text);
           line-height: 1.1;
           margin-bottom: 0.25rem;
         }
-
-        .resume-title {
-          font-family: 'DM Mono', monospace;
+        .res-title {
+          font-family: 'JetBrains Mono', monospace;
           font-size: 0.78rem;
-          font-weight: 300;
-          color: var(--blue-light);
-          letter-spacing: 0.08em;
+          font-weight: 400;
+          color: var(--accent);
+          letter-spacing: 0.06em;
           margin-bottom: 0.85rem;
         }
-
-        .resume-verse {
+        .res-objective {
           font-size: 0.78rem;
           font-weight: 300;
-          color: var(--gray);
+          color: var(--text-secondary);
           font-style: italic;
-          line-height: 1.6;
+          line-height: 1.65;
           padding: 0.75rem 1rem;
-          border-left: 2px solid var(--blue-light);
-          background: var(--blue-muted);
-          border-radius: 0 6px 6px 0;
+          border-left: 2px solid var(--accent);
+          background: var(--accent-soft);
+          border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
           margin-bottom: 2rem;
-          opacity: 0.8;
+          opacity: 0.85;
         }
 
-        .resume-section {
+        .res-section {
           margin-bottom: 2rem;
         }
-
-        .resume-section-title {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.72rem;
-          font-weight: 500;
-          color: var(--gray);
+        .res-section-title {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.68rem;
+          font-weight: 400;
+          color: var(--text-muted);
           text-transform: uppercase;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.1em;
           margin-bottom: 1.1rem;
           display: flex;
           align-items: center;
           gap: 0.6rem;
-          font-family: 'DM Mono', monospace;
         }
-        .resume-section-title::after {
+        .res-section-title::after {
           content: '';
           flex: 1;
           height: 1px;
-          background: var(--border-dim);
+          background: var(--border);
         }
 
-        /* Education timeline */
-        .edu-timeline {
+        /* Education timeline in resume */
+        .res-timeline {
           display: flex;
           flex-direction: column;
           gap: 0;
           position: relative;
           padding-left: 1.25rem;
         }
-        .edu-timeline::before {
+        .res-timeline::before {
           content: '';
           position: absolute;
-          left: 4px; top: 8px; bottom: 8px;
+          left: 3px; top: 8px; bottom: 8px;
           width: 1px;
-          background: linear-gradient(to bottom, var(--blue-light), transparent);
+          background: linear-gradient(to bottom, var(--accent), transparent);
           opacity: 0.3;
         }
-
-        .edu-item {
+        .res-edu-item {
           position: relative;
           padding-bottom: 1.5rem;
         }
-        .edu-item:last-child { padding-bottom: 0; }
-
-        .edu-dot {
+        .res-edu-item:last-child { padding-bottom: 0; }
+        .res-edu-dot {
           position: absolute;
           left: -1.25rem;
           top: 6px;
-          width: 8px; height: 8px;
+          width: 7px; height: 7px;
           border-radius: 50%;
-          border: 1.5px solid var(--blue-light);
-          background: var(--navy-mid);
+          border: 1.5px solid var(--accent);
+          background: var(--bg-alt);
         }
-        .edu-item:first-child .edu-dot {
-          background: var(--blue-light);
+        .res-edu-item:first-child .res-edu-dot {
+          background: var(--accent);
         }
-
-        .edu-period {
-          font-family: 'DM Mono', monospace;
-          font-size: 0.65rem;
+        .res-edu-period {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.62rem;
           font-weight: 300;
-          color: var(--blue-light);
-          letter-spacing: 0.06em;
+          color: var(--accent);
+          letter-spacing: 0.04em;
           margin-bottom: 0.2rem;
         }
-
-        .edu-school {
-          font-family: 'DM Sans', sans-serif;
+        .res-edu-school {
           font-size: 0.85rem;
           font-weight: 500;
-          color: var(--white);
+          color: var(--text);
           margin-bottom: 0.15rem;
           line-height: 1.3;
         }
-
-        .edu-level {
-          font-size: 0.75rem;
+        .res-edu-level {
+          font-size: 0.72rem;
           font-weight: 400;
-          color: var(--blue-light);
+          color: var(--accent);
           margin-bottom: 0.15rem;
         }
-
-        .edu-program {
-          font-size: 0.75rem;
+        .res-edu-program {
+          font-size: 0.72rem;
           font-weight: 300;
-          color: var(--white-dim);
+          color: var(--text-secondary);
           margin-bottom: 0.15rem;
         }
-
-        .edu-address {
-          font-size: 0.7rem;
+        .res-edu-address {
+          font-size: 0.68rem;
           font-weight: 300;
-          color: var(--gray);
+          color: var(--text-muted);
           line-height: 1.4;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
           .resume { padding: 5rem 1.5rem; }
           .resume-preview { grid-template-columns: 1fr; }
-          .resume-sidebar { border-right: none; border-bottom: 1px solid var(--border-dim); }
-          .resume-download-bar-body { flex-direction: column; align-items: flex-start; }
+          .res-sidebar {
+            border-right: none;
+            border-bottom: 1px solid var(--border);
+          }
+          .resume-bar-body {
+            flex-direction: column;
+            align-items: flex-start;
+          }
           .resume-btns { width: 100%; }
           .resume-btns a { flex: 1; justify-content: center; }
         }
@@ -397,16 +387,18 @@ export default function Resume() {
       <section className="resume" id="resume">
         <div className="resume-inner">
 
-          <p className="section-eyebrow">02 — Resume</p>
-          <h2 className="section-title">My <span>Resume</span></h2>
-          <div className="section-divider" />
+          <div className="fade-in">
+            <p className="section-label">06 — Resume</p>
+            <h2 className="section-heading">My <em>Resume</em></h2>
+            <hr className="section-rule" />
+          </div>
 
           {/* Download bar */}
-          <div className="resume-download-bar">
-            <div className="resume-download-bar-top" />
-            <div className="resume-download-bar-body">
+          <div className="resume-download-bar fade-in">
+            <div className="resume-bar-accent" />
+            <div className="resume-bar-body">
               <div className="resume-file-info">
-                <div className="resume-file-icon">📄</div>
+                <div className="resume-file-icon">PDF</div>
                 <div>
                   <div className="resume-file-name">Burgos_John_Lemset_Resume.pdf</div>
                   <div className="resume-file-sub">PDF · Last updated 2025</div>
@@ -416,7 +408,7 @@ export default function Resume() {
                 <a href={resume} target="_blank" rel="noopener noreferrer" className="btn-primary">
                   View Resume ↗
                 </a>
-                <a href={resume} download="Burgos_John_Lemset_Resume.pdf" className="btn-secondary">
+                <a href={resume} download="Burgos_John_Lemset_Resume.pdf" className="btn-outline">
                   Download ↓
                 </a>
               </div>
@@ -424,85 +416,81 @@ export default function Resume() {
           </div>
 
           {/* Resume preview */}
-          <div className="resume-preview">
+          <div className="resume-preview fade-in">
 
             {/* Sidebar */}
-            <div className="resume-sidebar">
-
+            <div className="res-sidebar">
               <img
                 src={resumepic}
                 alt="John Lemset S. Burgos"
-                className="sidebar-photo"
+                className="res-sidebar-photo"
               />
 
               <div>
-                <div className="sidebar-section-title">Contact</div>
-                <div className="contact-list">
+                <div className="res-sidebar-title">Contact</div>
+                <div className="res-contact-list">
                   {contact.map(c => (
-                    <div className="contact-item" key={c.label}>
-                      <span className="contact-item-icon">{c.icon}</span>
-                      {c.label}
+                    <div className="res-contact-item" key={c.label}>
+                      <span className="res-contact-label">{c.label}</span>
+                      <span className="res-contact-value">{c.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div>
-                <div className="sidebar-section-title">Personal</div>
-                <div className="personal-list">
+                <div className="res-sidebar-title">Personal</div>
+                <div className="res-personal-list">
                   {personal.map(p => (
-                    <div className="personal-item" key={p.label}>
-                      <span className="personal-label">{p.label}</span>
-                      <span className="personal-value">{p.value}</span>
+                    <div className="res-personal-item" key={p.label}>
+                      <span className="res-personal-label">{p.label}</span>
+                      <span className="res-personal-value">{p.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div>
-                <div className="sidebar-section-title">Skills</div>
-                <div className="skills-list">
+                <div className="res-sidebar-title">Skills</div>
+                <div className="res-skills-list">
                   {skills.map(s => (
-                    <div className="skill-item" key={s.label}>
-                      <span>{s.icon}</span>
+                    <div className="res-skill-item" key={s.label}>
+                      <span className="res-skill-dot" />
                       {s.label}
                     </div>
                   ))}
                 </div>
               </div>
-
             </div>
 
             {/* Main content */}
-            <div className="resume-main">
+            <div className="res-main">
+              <div className="res-name">John Lemset S. Burgos</div>
+              <div className="res-title">&gt;_ Computer Engineering Student</div>
 
-              <div className="resume-name">John Lemset S. Burgos</div>
-              <div className="resume-title">&gt;_ Computer Engineering Student</div>
-
-              <div className="resume-verse">
-                To obtain an internship or entry-level position where I can apply my knowledge 
-                in computer engineering, software development, and embedded systems. As a dedicated and 
-                fast-learning third-year BS Computer Engineering student at the First Asia Institute of 
-                Technology and Humanities, I aim to contribute meaningfully to a dynamic team while continuously 
+              <div className="res-objective">
+                To obtain an internship or entry-level position where I can apply my knowledge
+                in computer engineering, software development, and embedded systems. As a dedicated and
+                fast-learning third-year BS Computer Engineering student at the First Asia Institute of
+                Technology and Humanities, I aim to contribute meaningfully to a dynamic team while continuously
                 growing as a future software engineer.
               </div>
 
-              <div className="resume-section">
-                <div className="resume-section-title">🎓 Education</div>
-                <div className="edu-timeline">
+              <div className="res-section">
+                <div className="res-section-title">Education</div>
+                <div className="res-timeline">
                   {education.map((e, i) => (
-                    <div className="edu-item" key={i}>
-                      <div className="edu-dot" />
-                      <div className="edu-period">{e.period}</div>
-                      <div className="edu-school">{e.school}</div>
-                      <div className="edu-level">{e.level}</div>
-                      {e.program && <div className="edu-program">{e.program}</div>}
-                      <div className="edu-address">{e.address}</div>
+                    <div className="res-edu-item" key={i}>
+                      <div className="res-edu-dot" />
+                      <div className="res-edu-period">{e.period}</div>
+                      <div className="res-edu-school">{e.school}</div>
+                      <div className="res-edu-level">{e.level}</div>
+                      {e.program && <div className="res-edu-program">{e.program}</div>}
+                      <div className="res-edu-address">{e.address}</div>
                     </div>
                   ))}
                 </div>
               </div>
-
             </div>
           </div>
 

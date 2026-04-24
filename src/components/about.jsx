@@ -1,83 +1,34 @@
 export default function About() {
   const strengths = [
     {
-      icon: "⚡",
       title: "Fast Learner",
       desc: "Quickly adapts to new technologies, tools, and concepts — turning unfamiliar challenges into opportunities for growth."
     },
     {
-      icon: "🔩",
       title: "Hardworking",
       desc: "Committed to putting in the effort required to deliver quality results, whether in academic projects or personal pursuits."
     }
   ];
 
   const interests = [
-    { label: "Software Development", icon: "💻" },
-    { label: "Embedded Systems / IoT", icon: "🔌" },
-    { label: "AI / Machine Learning", icon: "🤖" },
+    "Software Development",
+    "Embedded Systems / IoT",
+    "AI / Machine Learning",
   ];
 
   return (
     <>
       <style>{`
-        /* ── ABOUT SECTION ── */
         .about {
           padding: 7rem 3rem;
-          background: var(--navy);
+          background: var(--bg);
           position: relative;
-          overflow: hidden;
         }
-
-        /* Subtle side accent */
-        .about::before {
-          content: '';
-          position: absolute;
-          left: 0; top: 10%; bottom: 10%;
-          width: 1px;
-          background: linear-gradient(to bottom, transparent, var(--blue-light), transparent);
-          opacity: 0.2;
-        }
-
         .about-inner {
-          max-width: 1020px;
+          max-width: 1060px;
           margin: 0 auto;
         }
 
-        /* Section label */
-        .section-eyebrow {
-          font-family: 'DM Mono', monospace;
-          font-size: 0.7rem;
-          font-weight: 300;
-          color: var(--blue-light);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          margin-bottom: 0.6rem;
-        }
-
-        .section-title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(1.8rem, 4vw, 2.8rem);
-          font-weight: 700;
-          color: var(--white);
-          margin-bottom: 0.5rem;
-          line-height: 1.15;
-        }
-
-        .section-title span {
-          color: var(--blue-light);
-          font-style: italic;
-        }
-
-        .section-divider {
-          width: 36px;
-          height: 1px;
-          background: var(--blue-light);
-          opacity: 0.4;
-          margin-bottom: 3rem;
-        }
-
-        /* Two-column layout */
         .about-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -85,23 +36,19 @@ export default function About() {
           align-items: start;
         }
 
-        /* Left — text */
         .about-text p {
           font-size: 0.92rem;
           font-weight: 300;
-          color: var(--gray);
+          color: var(--text-secondary);
           line-height: 1.9;
           margin-bottom: 1.25rem;
         }
-
-        .about-text p:last-child { margin-bottom: 0; }
-
+        .about-text p:last-of-type { margin-bottom: 0; }
         .about-text strong {
-          color: var(--white-dim);
+          color: var(--text);
           font-weight: 500;
         }
 
-        /* Why CPE tag row */
         .about-tags {
           display: flex;
           flex-wrap: wrap;
@@ -109,161 +56,126 @@ export default function About() {
           margin-top: 1.75rem;
         }
         .about-tag {
-          padding: 0.3rem 0.85rem;
-          border: 1px solid var(--border);
+          padding: 0.3rem 0.9rem;
+          border: 1px solid var(--border-hover);
           border-radius: 100px;
-          font-size: 0.7rem;
+          font-size: 0.72rem;
           font-weight: 400;
-          color: var(--blue-light);
-          background: var(--blue-muted);
-          letter-spacing: 0.03em;
-          font-family: 'DM Sans', sans-serif;
+          color: var(--text-secondary);
+          background: var(--surface);
         }
 
-        /* Right — cards */
         .about-right {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.25rem;
         }
 
-        /* Strengths */
-        .about-card {
-          background: var(--navy-card);
-          border: 1px solid var(--border-dim);
-          border-radius: 10px;
-          padding: 1.25rem 1.4rem;
-          position: relative;
-          overflow: hidden;
+        .strength-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-left: 2px solid var(--accent-border);
+          border-radius: var(--radius);
+          padding: 1.3rem 1.5rem;
+          transition: border-color 0.3s ease;
         }
-        .about-card::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, var(--blue-light), transparent);
-          opacity: 0.25;
+        .strength-card:hover {
+          border-color: var(--border-hover);
+          border-left-color: var(--accent);
         }
-        .about-card-header {
-          display: flex;
-          align-items: center;
-          gap: 0.65rem;
-          margin-bottom: 0.5rem;
-        }
-        .about-card-icon {
-          font-size: 1.1rem;
-          line-height: 1;
-        }
-        .about-card-title {
-          font-family: 'DM Sans', sans-serif;
+        .strength-title {
           font-size: 0.88rem;
           font-weight: 500;
-          color: var(--white);
-          letter-spacing: 0.01em;
+          color: var(--text);
+          margin-bottom: 0.45rem;
         }
-        .about-card-desc {
+        .strength-desc {
           font-size: 0.8rem;
           font-weight: 300;
-          color: var(--gray);
+          color: var(--text-secondary);
           line-height: 1.7;
         }
 
-        /* Interests block */
-        .interests-block {
-          background: var(--navy-card);
-          border: 1px solid var(--border-dim);
-          border-radius: 10px;
-          padding: 1.25rem 1.4rem;
-          position: relative;
-          overflow: hidden;
-        }
-        .interests-block::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, var(--blue-light), transparent);
-          opacity: 0.25;
+        .interests-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+          padding: 1.3rem 1.5rem;
         }
         .interests-label {
+          font-family: 'JetBrains Mono', monospace;
           font-size: 0.62rem;
           font-weight: 400;
-          color: var(--gray);
+          color: var(--text-muted);
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          margin-bottom: 0.85rem;
-          font-family: 'DM Mono', monospace;
+          margin-bottom: 0.9rem;
         }
         .interests-list {
           display: flex;
           flex-direction: column;
-          gap: 0.55rem;
+          gap: 0.6rem;
         }
         .interest-item {
           display: flex;
           align-items: center;
-          gap: 0.65rem;
+          gap: 0.75rem;
           font-size: 0.84rem;
           font-weight: 400;
-          color: var(--white-dim);
-        }
-        .interest-icon {
-          font-size: 1rem;
-          width: 24px;
-          text-align: center;
+          color: var(--text-secondary);
         }
         .interest-dot {
-          width: 4px; height: 4px;
+          width: 5px; height: 5px;
           border-radius: 50%;
-          background: var(--blue-light);
+          background: var(--accent);
           opacity: 0.6;
-          margin-left: auto;
-        }
-
-        /* Goal banner */
-        .goal-banner {
-          background: var(--blue-muted);
-          border: 1px solid var(--border);
-          border-radius: 10px;
-          padding: 1.1rem 1.4rem;
-          display: flex;
-          align-items: center;
-          gap: 0.85rem;
-        }
-        .goal-icon {
-          font-size: 1.3rem;
           flex-shrink: 0;
         }
+
+        .goal-card {
+          background: var(--accent-soft);
+          border: 1px solid var(--accent-border);
+          border-radius: var(--radius);
+          padding: 1.1rem 1.4rem;
+          display: flex;
+          align-items: flex-start;
+          gap: 0.85rem;
+        }
+        .goal-indicator {
+          width: 3px;
+          min-height: 36px;
+          background: var(--accent);
+          border-radius: 2px;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
         .goal-text {
-          font-size: 0.8rem;
+          font-size: 0.82rem;
           font-weight: 300;
-          color: var(--white-dim);
-          line-height: 1.6;
+          color: var(--text-secondary);
+          line-height: 1.65;
         }
         .goal-text strong {
-          color: var(--blue-light);
+          color: var(--accent);
           font-weight: 500;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
           .about { padding: 5rem 1.5rem; }
           .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-          .about::before { display: none; }
         }
       `}</style>
 
       <section className="about" id="about">
         <div className="about-inner">
-
-          <p className="section-eyebrow">01 — About Me</p>
-          <h2 className="section-title">Who I <span>Am</span></h2>
-          <div className="section-divider" />
+          <div className="fade-in">
+            <p className="section-label">01 — About Me</p>
+            <h2 className="section-heading">Who I <em>Am</em></h2>
+            <hr className="section-rule" />
+          </div>
 
           <div className="about-grid">
-
-            {/* LEFT — Bio */}
-            <div className="about-text">
+            <div className="about-text fade-in">
               <p>
                 I'm <strong>John Lemset S. Burgos</strong>, a third-year Computer Engineering
                 student at <strong>FAITH Colleges</strong>. I'm driven by a genuine curiosity
@@ -283,46 +195,39 @@ export default function About() {
               </p>
 
               <div className="about-tags">
-                <span className="about-tag">🎓 3rd Year CPE Student</span>
-                <span className="about-tag">🏫 FAITH Colleges</span>
-                <span className="about-tag">🇵🇭 Philippines</span>
+                <span className="about-tag">3rd Year CPE Student</span>
+                <span className="about-tag">FAITH Colleges</span>
+                <span className="about-tag">Philippines</span>
               </div>
             </div>
 
-            {/* RIGHT — Cards */}
-            <div className="about-right">
-
+            <div className="about-right fade-in d1">
               {strengths.map(s => (
-                <div className="about-card" key={s.title}>
-                  <div className="about-card-header">
-                    <span className="about-card-icon">{s.icon}</span>
-                    <span className="about-card-title">{s.title}</span>
-                  </div>
-                  <p className="about-card-desc">{s.desc}</p>
+                <div className="strength-card" key={s.title}>
+                  <div className="strength-title">{s.title}</div>
+                  <p className="strength-desc">{s.desc}</p>
                 </div>
               ))}
 
-              <div className="interests-block">
+              <div className="interests-card">
                 <div className="interests-label">Fields of Interest</div>
                 <div className="interests-list">
                   {interests.map(i => (
-                    <div className="interest-item" key={i.label}>
-                      <span className="interest-icon">{i.icon}</span>
-                      {i.label}
+                    <div className="interest-item" key={i}>
                       <span className="interest-dot" />
+                      {i}
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="goal-banner">
-                <span className="goal-icon">🎯</span>
+              <div className="goal-card">
+                <div className="goal-indicator" />
                 <p className="goal-text">
                   Aspiring to become a <strong>Software Engineer</strong> — building
                   reliable, efficient systems that make a real-world impact.
                 </p>
               </div>
-
             </div>
           </div>
         </div>

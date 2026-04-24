@@ -28,6 +28,20 @@ export default function Projects() {
       role: "Co-Developer",
       link: null,
     },
+    {
+      title: "Chick-up",
+      desc: "A responsive React‑based web application deployed on Cloudflare Pages, designed to provide a seamless ordering experience for users. It integrates directly with the Flask backend hosted on Render, enabling real‑time order management, email notifications, and secure API communication.",
+      tools: ["React", "Cloudflare Pages", "Flask", "Render", "Antigravity"],
+      role: "Developer",
+      link: null,
+    },
+    {
+      title: "FPGA-Based PIC PIC 3: 4-Player Multiplayer Game",
+      desc: "A 4-player multiplayer game inspired by Pico Park, implemented on an Altera DE0-CV FPGA board, demonstrating real-time game logic and hardware-level programming.",
+      tools: ["Verilog HDL", "Quartus II (32‑bit)", "FPGA hardware (Altera Cyclone V, 28nm, 5CEBA4F23C7N)"],
+      role: "Developer",
+      link: null,
+    },
   ];
 
   return (
@@ -35,128 +49,89 @@ export default function Projects() {
       <style>{`
         .projects {
           padding: 7rem 3rem;
-          background: var(--navy);
+          background: var(--bg-alt);
           position: relative;
-          overflow: hidden;
-        }
-        .projects::before {
-          content: '';
-          position: absolute;
-          left: 0; top: 10%; bottom: 10%;
-          width: 1px;
-          background: linear-gradient(to bottom, transparent, var(--blue-light), transparent);
-          opacity: 0.2;
         }
         .projects-inner {
-          max-width: 1020px;
+          max-width: 1060px;
           margin: 0 auto;
         }
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 1.25rem;
         }
 
         .project-card {
-          background: var(--navy-card);
-          border: 1px solid var(--border-dim);
-          border-radius: 12px;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
           padding: 1.5rem 1.75rem;
           display: flex;
           flex-direction: column;
           gap: 0.85rem;
-          position: relative;
-          overflow: hidden;
-          transition: border-color 0.2s, transform 0.2s;
+          transition: border-color 0.3s ease, transform 0.25s ease;
         }
         .project-card:hover {
-          border-color: var(--border);
+          border-color: var(--accent-border);
           transform: translateY(-2px);
         }
-        .project-card-top {
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, var(--blue-light), transparent);
-          opacity: 0.25;
-        }
 
-        .project-number {
-          font-family: 'DM Mono', monospace;
+        .project-num {
+          font-family: 'JetBrains Mono', monospace;
           font-size: 0.62rem;
-          color: var(--blue-light);
-          letter-spacing: 0.08em;
-          opacity: 0.6;
+          color: var(--accent);
+          letter-spacing: 0.06em;
+          opacity: 0.7;
         }
-
-        .project-title {
-          font-family: 'DM Sans', sans-serif;
+        .project-name {
           font-size: 0.95rem;
           font-weight: 500;
-          color: var(--white);
-          line-height: 1.3;
+          color: var(--text);
+          line-height: 1.35;
         }
-
         .project-desc {
           font-size: 0.78rem;
           font-weight: 300;
-          color: var(--gray);
+          color: var(--text-secondary);
           line-height: 1.7;
           flex: 1;
         }
-
-        .project-tools {
+        .project-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.4rem;
+          gap: 0.35rem;
         }
-        .project-tool {
-          font-family: 'DM Mono', monospace;
-          font-size: 0.62rem;
-          padding: 0.2rem 0.55rem;
-          background: var(--blue-muted);
-          border: 1px solid var(--border);
-          border-radius: 4px;
-          color: var(--blue-light);
+        .project-tag {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.6rem;
+          padding: 0.18rem 0.5rem;
+          background: var(--accent-soft);
+          border: 1px solid var(--accent-border);
+          border-radius: 3px;
+          color: var(--accent);
         }
-
         .project-footer {
           display: flex;
           align-items: center;
           justify-content: space-between;
           padding-top: 0.75rem;
-          border-top: 1px solid var(--border-dim);
+          border-top: 1px solid var(--border);
         }
         .project-role {
           font-size: 0.7rem;
-          font-weight: 300;
-          color: var(--gray);
-          font-family: 'DM Mono', monospace;
+          color: var(--text-muted);
+          font-family: 'JetBrains Mono', monospace;
         }
         .project-link {
           font-size: 0.72rem;
-          color: var(--blue-light);
+          color: var(--accent);
           text-decoration: none;
-          font-family: 'DM Mono', monospace;
-          transition: color 0.2s;
+          font-family: 'JetBrains Mono', monospace;
+          transition: color 0.3s ease;
         }
-        .project-link:hover { color: var(--white); }
-
-        .projects-placeholder-note {
-          text-align: center;
-          margin-top: 2rem;
-          font-size: 0.75rem;
-          font-family: 'DM Mono', monospace;
-          color: var(--gray);
-          padding: 0.75rem 1.25rem;
-          border: 1px dashed var(--border);
-          border-radius: 8px;
-          display: inline-block;
-          left: 50%;
-          position: relative;
-          transform: translateX(-50%);
-        }
+        .project-link:hover { color: var(--text); }
 
         @media (max-width: 768px) {
           .projects { padding: 5rem 1.5rem; }
@@ -165,27 +140,28 @@ export default function Projects() {
 
       <section className="projects" id="projects">
         <div className="projects-inner">
-          <p className="section-eyebrow">05 — Projects</p>
-          <h2 className="section-title">My <span>Projects</span></h2>
-          <div className="section-divider" />
+          <div className="fade-in">
+            <p className="section-label">04 — Projects</p>
+            <h2 className="section-heading">My <em>Projects</em></h2>
+            <hr className="section-rule" />
+          </div>
 
-          <div className="projects-grid">
+          <div className="projects-grid fade-in">
             {projects.map((p, i) => (
               <div className="project-card" key={i}>
-                <div className="project-card-top" />
-                <div className="project-number">Project {String(i + 1).padStart(2, '0')}</div>
-                <div className="project-title">{p.title}</div>
+                <div className="project-num">Project {String(i + 1).padStart(2, '0')}</div>
+                <div className="project-name">{p.title}</div>
                 <p className="project-desc">{p.desc}</p>
-                <div className="project-tools">
+                <div className="project-tags">
                   {p.tools.map(t => (
-                    <span className="project-tool" key={t}>{t}</span>
+                    <span className="project-tag" key={t}>{t}</span>
                   ))}
                 </div>
                 <div className="project-footer">
                   <span className="project-role">Role: {p.role}</span>
                   {p.link
                     ? <a href={p.link} className="project-link" target="_blank" rel="noopener noreferrer">View ↗</a>
-                    : <span className="project-link" style={{ opacity: 0.4 }}>Link unavailable</span>
+                    : <span className="project-link" style={{ opacity: 0.35 }}>—</span>
                   }
                 </div>
               </div>

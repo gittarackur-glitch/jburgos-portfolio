@@ -1,46 +1,37 @@
 export default function Skills() {
-    const technical = [
-        { name: "Python", icon: "🐍", level: 70 },
-        { name: "HDL (Hardware Description Language)", icon: "🔲", level: 60 },
-        { name: "MicroPython", icon: "🔌", level: 65 },
-    ];
+  const technical = [
+    { name: "Python", level: 70 },
+    { name: "HDL (Hardware Description Language)", level: 60 },
+    { name: "MicroPython", level: 65 },
+  ];
 
-    const tools = [
-        { name: "VS Code", icon: "💻" },
-        { name: "Xilinx Vivado", icon: "⚡" },
-        { name: "Quartus Prime", icon: "🔧" },
-        { name: "EDA Playground", icon: "🧪" },
-        { name: "Antigravity", icon: "🚀" },
-    ];
+  const tools = [
+    "VS Code",
+    "Xilinx Vivado",
+    "Quartus Prime",
+    "EDA Playground",
+    "Antigravity",
+  ];
 
-    const soft = [
-        { name: "Programming", icon: "💻" },
-        { name: "Problem Solving", icon: "🧩" },
-        { name: "Proofreading", icon: "✍️" },
-        { name: "Basic Photo Editing", icon: "🖼️" },
-        { name: "Fast Learner", icon: "⚡" },
-        { name: "Hardworking", icon: "🔩" },
-    ];
+  const soft = [
+    "Programming",
+    "Problem Solving",
+    "Proofreading",
+    "Basic Photo Editing",
+    "Fast Learner",
+    "Hardworking",
+  ];
 
-    return (
-        <>
-            <style>{`
+  return (
+    <>
+      <style>{`
         .skills {
           padding: 7rem 3rem;
-          background: var(--navy-mid);
+          background: var(--bg);
           position: relative;
-          overflow: hidden;
-        }
-        .skills::before {
-          content: '';
-          position: absolute;
-          right: 0; top: 10%; bottom: 10%;
-          width: 1px;
-          background: linear-gradient(to bottom, transparent, var(--blue-light), transparent);
-          opacity: 0.2;
         }
         .skills-inner {
-          max-width: 1020px;
+          max-width: 1060px;
           margin: 0 auto;
         }
 
@@ -50,182 +41,176 @@ export default function Skills() {
           gap: 1.5rem;
         }
 
-        .skills-card {
-          background: var(--navy-card);
-          border: 1px solid var(--border-dim);
-          border-radius: 12px;
+        .skill-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
           padding: 1.5rem 1.75rem;
-          position: relative;
-          overflow: hidden;
+          transition: border-color 0.3s ease;
         }
-        .skills-card-top {
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, var(--blue-light), transparent);
-          opacity: 0.25;
-        }
-        .skills-card-title {
-          font-family: 'DM Mono', monospace;
+        .skill-card:hover { border-color: var(--border-hover); }
+
+        .skill-card-header {
+          font-family: 'JetBrains Mono', monospace;
           font-size: 0.65rem;
-          font-weight: 300;
-          color: var(--gray);
+          font-weight: 400;
+          color: var(--text-muted);
           text-transform: uppercase;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.1em;
           margin-bottom: 1.25rem;
           display: flex;
           align-items: center;
           gap: 0.5rem;
         }
-        .skills-card-title::after {
+        .skill-card-header::after {
           content: '';
           flex: 1;
           height: 1px;
-          background: var(--border-dim);
+          background: var(--border);
         }
 
-        /* Technical skill bars */
-        .skill-bar-item {
+        .bar-item {
           margin-bottom: 1.1rem;
         }
-        .skill-bar-item:last-child { margin-bottom: 0; }
-        .skill-bar-header {
+        .bar-item:last-child { margin-bottom: 0; }
+        .bar-top {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.45rem;
         }
-        .skill-bar-name {
-          font-size: 0.8rem;
+        .bar-name {
+          font-size: 0.82rem;
           font-weight: 400;
-          color: var(--white-dim);
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
+          color: var(--text-secondary);
         }
-        .skill-bar-pct {
-          font-family: 'DM Mono', monospace;
+        .bar-pct {
+          font-family: 'JetBrains Mono', monospace;
           font-size: 0.65rem;
-          color: var(--blue-light);
+          color: var(--accent);
         }
-        .skill-bar-track {
-          height: 4px;
-          background: var(--border-dim);
+        .bar-track {
+          height: 3px;
+          background: var(--border);
           border-radius: 100px;
           overflow: hidden;
         }
-        .skill-bar-fill {
+        .bar-fill {
           height: 100%;
-          background: linear-gradient(90deg, var(--blue), var(--blue-light));
+          background: linear-gradient(90deg, var(--accent), rgba(196, 162, 101, 0.45));
           border-radius: 100px;
         }
 
-        /* Tools grid */
-        .tools-grid {
+        .tools-list {
           display: flex;
           flex-direction: column;
-          gap: 0.55rem;
+          gap: 0.5rem;
         }
-        .tool-item {
+        .tool-chip {
           display: flex;
           align-items: center;
           gap: 0.65rem;
-          padding: 0.55rem 0.75rem;
-          background: var(--blue-muted);
-          border: 1px solid var(--border);
-          border-radius: 6px;
+          padding: 0.5rem 0.75rem;
+          background: var(--accent-soft);
+          border: 1px solid var(--accent-border);
+          border-radius: var(--radius-sm);
           font-size: 0.8rem;
           font-weight: 400;
-          color: var(--white-dim);
-          transition: border-color 0.2s;
+          color: var(--text-secondary);
+          transition: border-color 0.3s ease;
         }
-        .tool-item:hover { border-color: var(--blue-light); }
+        .tool-chip:hover { border-color: var(--accent); }
+        .tool-dot {
+          width: 4px; height: 4px;
+          border-radius: 50%;
+          background: var(--accent);
+          opacity: 0.7;
+        }
 
-        /* Soft skills */
-        .soft-grid {
+        .soft-list {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 0.55rem;
+          gap: 0.5rem;
         }
-        .soft-item {
+        .soft-chip {
           display: flex;
           align-items: center;
           gap: 0.5rem;
           padding: 0.5rem 0.7rem;
-          background: var(--navy);
-          border: 1px solid var(--border-dim);
-          border-radius: 6px;
-          font-size: 0.76rem;
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          font-size: 0.78rem;
           font-weight: 300;
-          color: var(--white-dim);
+          color: var(--text-secondary);
+        }
+        .soft-dash {
+          color: var(--text-muted);
+          font-size: 0.65rem;
         }
 
-        .skills-card.wide {
+        .skill-card.wide {
           grid-column: span 2;
         }
 
         @media (max-width: 768px) {
           .skills { padding: 5rem 1.5rem; }
           .skills-grid { grid-template-columns: 1fr; }
-          .skills-card.wide { grid-column: span 1; }
-          .soft-grid { grid-template-columns: 1fr; }
+          .skill-card.wide { grid-column: span 1; }
+          .soft-list { grid-template-columns: 1fr; }
         }
       `}</style>
 
-            <section className="skills" id="skills">
-                <div className="skills-inner">
-                    <p className="section-eyebrow">04 — Skills</p>
-                    <h2 className="section-title">Technical <span>Skills</span></h2>
-                    <div className="section-divider" />
+      <section className="skills" id="skills">
+        <div className="skills-inner">
+          <div className="fade-in">
+            <p className="section-label">03 — Skills</p>
+            <h2 className="section-heading">Technical <em>Skills</em></h2>
+            <hr className="section-rule" />
+          </div>
 
-                    <div className="skills-grid">
-
-                        {/* Programming Languages */}
-                        <div className="skills-card">
-                            <div className="skills-card-top" />
-                            <div className="skills-card-title">Programming Languages</div>
-                            {technical.map(s => (
-                                <div className="skill-bar-item" key={s.name}>
-                                    <div className="skill-bar-header">
-                                        <span className="skill-bar-name">{s.icon} {s.name}</span>
-                                        <span className="skill-bar-pct">{s.level}%</span>
-                                    </div>
-                                    <div className="skill-bar-track">
-                                        <div className="skill-bar-fill" style={{ width: `${s.level}%` }} />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Tools */}
-                        <div className="skills-card">
-                            <div className="skills-card-top" />
-                            <div className="skills-card-title">Tools & Software</div>
-                            <div className="tools-grid">
-                                {tools.map(t => (
-                                    <div className="tool-item" key={t.name}>
-                                        <span>{t.icon}</span> {t.name}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Soft Skills */}
-                        <div className="skills-card wide">
-                            <div className="skills-card-top" />
-                            <div className="skills-card-title">Other Skills</div>
-                            <div className="soft-grid">
-                                {soft.map(s => (
-                                    <div className="soft-item" key={s.name}>
-                                        <span>{s.icon}</span> {s.name}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                    </div>
+          <div className="skills-grid fade-in">
+            <div className="skill-card">
+              <div className="skill-card-header">Programming Languages</div>
+              {technical.map(s => (
+                <div className="bar-item" key={s.name}>
+                  <div className="bar-top">
+                    <span className="bar-name">{s.name}</span>
+                    <span className="bar-pct">{s.level}%</span>
+                  </div>
+                  <div className="bar-track">
+                    <div className="bar-fill" style={{ width: `${s.level}%` }} />
+                  </div>
                 </div>
-            </section>
-        </>
-    );
+              ))}
+            </div>
+
+            <div className="skill-card">
+              <div className="skill-card-header">Tools & Software</div>
+              <div className="tools-list">
+                {tools.map(t => (
+                  <div className="tool-chip" key={t}>
+                    <span className="tool-dot" />
+                    {t}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="skill-card wide">
+              <div className="skill-card-header">Other Skills</div>
+              <div className="soft-list">
+                {soft.map(s => (
+                  <div className="soft-chip" key={s}>
+                    <span className="soft-dash">—</span>
+                    {s}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }

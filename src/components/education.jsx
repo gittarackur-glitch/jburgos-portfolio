@@ -1,215 +1,183 @@
 export default function Education() {
-    const education = [
-        {
-            period: "2023 — Present",
-            school: "First Asia Institute of Technology and Humanities",
-            short: "FAITH Colleges",
-            level: "College",
-            program: "Bachelor of Science in Computer Engineering",
-            address: "Pres. JP Laurel Highway, Darasa, Tanauan City, Batangas",
-            current: true,
-        },
-        {
-            period: "2021 — 2023",
-            school: "Tanauan Institute, Inc.",
-            short: "TII",
-            level: "Senior High School",
-            program: "Science, Technology, Engineering, and Mathematics",
-            address: "J. Gonzales Street, Barangay 4, Tanauan City, Batangas",
-            current: false,
-        },
-        {
-            period: "2017 — 2021",
-            school: "Tanauan Institute, Inc.",
-            short: "TII",
-            level: "Junior High School",
-            program: null,
-            address: "J. Gonzales Street, Barangay 4, Tanauan City, Batangas",
-            current: false,
-        },
-        {
-            period: "2011 — 2017",
-            school: "Master Creator's Learning Center, Inc.",
-            short: "MCLC",
-            level: "Primary School",
-            program: null,
-            address: "Barangay Gonzales, Tanauan City, Batangas",
-            current: false,
-        },
-    ];
+  const education = [
+    {
+      period: "2023 — Present",
+      school: "First Asia Institute of Technology and Humanities",
+      short: "FAITH",
+      level: "College",
+      program: "Bachelor of Science in Computer Engineering",
+      address: "Pres. JP Laurel Highway, Darasa, Tanauan City, Batangas",
+      current: true,
+    },
+    {
+      period: "2021 — 2023",
+      school: "Tanauan Institute, Inc.",
+      short: "TII",
+      level: "Senior High School",
+      program: "Science, Technology, Engineering, and Mathematics",
+      address: "J. Gonzales Street, Barangay 4, Tanauan City, Batangas",
+      current: false,
+    },
+    {
+      period: "2017 — 2021",
+      school: "Tanauan Institute, Inc.",
+      short: "TII",
+      level: "Junior High School",
+      program: null,
+      address: "J. Gonzales Street, Barangay 4, Tanauan City, Batangas",
+      current: false,
+    },
+    {
+      period: "2011 — 2017",
+      school: "Master Creator's Learning Center, Inc.",
+      short: "MCLC",
+      level: "Primary School",
+      program: null,
+      address: "Barangay Gonzales, Tanauan City, Batangas",
+      current: false,
+    },
+  ];
 
-    return (
-        <>
-            <style>{`
+  return (
+    <>
+      <style>{`
         .education {
           padding: 7rem 3rem;
-          background: var(--navy);
+          background: var(--bg-alt);
           position: relative;
-          overflow: hidden;
-        }
-        .education::before {
-          content: '';
-          position: absolute;
-          left: 0; top: 10%; bottom: 10%;
-          width: 1px;
-          background: linear-gradient(to bottom, transparent, var(--blue-light), transparent);
-          opacity: 0.2;
         }
         .education-inner {
-          max-width: 1020px;
+          max-width: 1060px;
           margin: 0 auto;
         }
 
-        .edu-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.25rem;
-        }
-
-        .edu-card {
-          background: var(--navy-card);
-          border: 1px solid var(--border-dim);
-          border-radius: 12px;
-          padding: 1.5rem 1.75rem;
+        .edu-timeline {
           position: relative;
-          overflow: hidden;
-          transition: border-color 0.2s;
+          padding-left: 2rem;
         }
-        .edu-card:hover { border-color: var(--border); }
-        .edu-card.current { border-color: var(--border); }
-
-        .edu-card-top {
-          height: 2px;
+        .edu-timeline::before {
+          content: '';
           position: absolute;
-          top: 0; left: 0; right: 0;
-          background: linear-gradient(90deg, var(--blue), transparent);
-          opacity: 0.4;
+          left: 3px;
+          top: 8px;
+          bottom: 8px;
+          width: 1px;
+          background: linear-gradient(to bottom, var(--accent), var(--border));
         }
-        .edu-card.current .edu-card-top { opacity: 0.8; }
 
-        .edu-card-header {
+        .edu-entry {
+          position: relative;
+          padding-bottom: 2.5rem;
+        }
+        .edu-entry:last-child { padding-bottom: 0; }
+
+        .edu-dot {
+          position: absolute;
+          left: -2rem;
+          top: 6px;
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          border: 1.5px solid var(--accent);
+          background: var(--bg-alt);
+        }
+        .edu-entry.current .edu-dot {
+          background: var(--accent);
+          box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        .edu-header {
           display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 1rem;
-          margin-bottom: 0.85rem;
+          align-items: center;
+          gap: 0.85rem;
+          margin-bottom: 0.6rem;
         }
-
+        .edu-period {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.68rem;
+          font-weight: 400;
+          color: var(--accent);
+          letter-spacing: 0.04em;
+        }
         .edu-badge {
-          font-family: 'DM Mono', monospace;
-          font-size: 0.62rem;
-          font-weight: 300;
-          padding: 0.22rem 0.6rem;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.6rem;
+          font-weight: 400;
+          padding: 0.15rem 0.5rem;
           border-radius: 100px;
-          letter-spacing: 0.06em;
-          flex-shrink: 0;
+          letter-spacing: 0.04em;
         }
         .edu-badge.active {
-          background: rgba(74,222,128,0.1);
-          border: 1px solid rgba(74,222,128,0.3);
-          color: #4ade80;
+          background: var(--green-bg);
+          border: 1px solid var(--green-border);
+          color: var(--green);
         }
         .edu-badge.completed {
-          background: var(--blue-muted);
+          background: var(--surface);
           border: 1px solid var(--border);
-          color: var(--blue-light);
+          color: var(--text-muted);
         }
 
-        .edu-period {
-          font-family: 'DM Mono', monospace;
-          font-size: 0.65rem;
-          font-weight: 300;
-          color: var(--blue-light);
-          letter-spacing: 0.06em;
-          margin-bottom: 0.4rem;
-        }
-
-        .edu-school-name {
-          font-family: 'DM Sans', sans-serif;
+        .edu-school {
           font-size: 0.95rem;
           font-weight: 500;
-          color: var(--white);
-          line-height: 1.3;
+          color: var(--text);
           margin-bottom: 0.3rem;
+          line-height: 1.3;
         }
-
         .edu-level-tag {
           display: inline-block;
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           font-weight: 400;
-          color: var(--blue-light);
-          background: var(--blue-muted);
-          padding: 0.15rem 0.55rem;
-          border-radius: 4px;
-          margin-bottom: 0.4rem;
+          color: var(--accent);
+          margin-bottom: 0.3rem;
         }
-
         .edu-program-text {
-          font-size: 0.78rem;
+          font-size: 0.8rem;
           font-weight: 300;
-          color: var(--white-dim);
-          margin-bottom: 0.4rem;
+          color: var(--text-secondary);
+          margin-bottom: 0.3rem;
           line-height: 1.4;
         }
-
-        .edu-address-text {
-          font-size: 0.7rem;
+        .edu-address {
+          font-size: 0.72rem;
           font-weight: 300;
-          color: var(--gray);
+          color: var(--text-muted);
           line-height: 1.5;
-          display: flex;
-          align-items: flex-start;
-          gap: 0.4rem;
-        }
-
-        .edu-short {
-          font-family: 'Playfair Display', serif;
-          font-size: 2.5rem;
-          font-weight: 700;
-          color: var(--border-dim);
-          position: absolute;
-          bottom: 0.75rem;
-          right: 1.25rem;
-          letter-spacing: -0.02em;
-          pointer-events: none;
-          user-select: none;
-        }
-        .edu-card.current .edu-short {
-          color: rgba(91,141,238,0.08);
         }
 
         @media (max-width: 768px) {
           .education { padding: 5rem 1.5rem; }
-          .edu-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
-            <section className="education" id="education">
-                <div className="education-inner">
-                    <p className="section-eyebrow">03 — Education</p>
-                    <h2 className="section-title">Academic <span>Background</span></h2>
-                    <div className="section-divider" />
+      <section className="education" id="education">
+        <div className="education-inner">
+          <div className="fade-in">
+            <p className="section-label">02 — Education</p>
+            <h2 className="section-heading">Academic <em>Background</em></h2>
+            <hr className="section-rule" />
+          </div>
 
-                    <div className="edu-grid">
-                        {education.map((e, i) => (
-                            <div className={`edu-card${e.current ? " current" : ""}`} key={i}>
-                                <div className="edu-card-top" />
-                                <div className="edu-card-header">
-                                    <div className="edu-period">{e.period}</div>
-                                    <span className={`edu-badge ${e.current ? "active" : "completed"}`}>
-                                        {e.current ? "Current" : "Completed"}
-                                    </span>
-                                </div>
-                                <div className="edu-school-name">{e.school}</div>
-                                <span className="edu-level-tag">{e.level}</span>
-                                {e.program && <div className="edu-program-text">{e.program}</div>}
-                                <div className="edu-address-text">📍 {e.address}</div>
-                                <div className="edu-short">{e.short}</div>
-                            </div>
-                        ))}
-                    </div>
+          <div className="edu-timeline fade-in">
+            {education.map((e, i) => (
+              <div className={`edu-entry${e.current ? " current" : ""}`} key={i}>
+                <div className="edu-dot" />
+                <div className="edu-header">
+                  <span className="edu-period">{e.period}</span>
+                  <span className={`edu-badge ${e.current ? "active" : "completed"}`}>
+                    {e.current ? "Current" : "Completed"}
+                  </span>
                 </div>
-            </section>
-        </>
-    );
+                <div className="edu-school">{e.school}</div>
+                <div className="edu-level-tag">{e.level}</div>
+                {e.program && <div className="edu-program-text">{e.program}</div>}
+                <div className="edu-address">{e.address}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
